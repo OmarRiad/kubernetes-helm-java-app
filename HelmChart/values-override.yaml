@@ -1,0 +1,20 @@
+appName: java-app
+replicas: 3   
+imageRepository: omarriad07/backend
+imageTag: java
+containerPort: 8080
+servicePort: 8080
+secretData:
+  DB_USER: my-user
+  DB_PWD: my-pass
+  MYSQL_ROOT_PASS: secret-root-pass
+  DB_NAME: my-app-db
+configData:
+  DB_SERVER: my-release-mysql-primary
+configName: db-config
+secretName: db-secret
+ingress:
+  host: my-java-app.local
+  pathType: Prefix
+  path: /
+regularData: {}
