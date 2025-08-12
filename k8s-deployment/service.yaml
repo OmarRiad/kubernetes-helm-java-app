@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: java-app
 spec:
-  # type: LoadBalancer
   selector:
     app: java-app
   ports:
