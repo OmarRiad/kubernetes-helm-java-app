@@ -31,14 +31,12 @@ pipeline {
         stage('deploy') {
             environment{
                 APP_NAME = 'java-app'
-                environment {
-                APP_NAME = 'java-app'
                 APP_NAMESPACE = 'my-app'
                 DB_USER  = credentials('db_user')
                 DB_PASS  = credentials('db_pass')
                 DB_NAME  = credentials('db_name')
                 DB_ROOT  = credentials('db_root_pass')
-            }
+            
             }
             steps {
                 script {
