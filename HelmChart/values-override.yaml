@@ -1,7 +1,10 @@
-appName: java-app
-replicas: 3   
-imageRepository: omarriad07/backend
-imageTag: java
+appName: java-maven-app
+namespace: dev
+replicas: 3
+profile: fargate
+imageRepository: 662930028566.dkr.ecr.us-east-1.amazonaws.com/java-maven-app
+registrySecret: aws-registry-key
+imageTag: latest
 containerPort: 8080
 servicePort: 8080
 secretData:
@@ -10,11 +13,23 @@ secretData:
   MYSQL_ROOT_PASS: secret-root-pass
   DB_NAME: my-app-db
 configData:
-  DB_SERVER: my-release-mysql-primary
+  DB_SERVER: my-release-mysql-primary.default.svc.cluster.local
 configName: db-config
 secretName: db-secret
 ingress:
-  host: my-java-app.local
+  host: a2af0a44cafb44cdc94a4c77387fe163-902618f17d4463ae.elb.us-east-1.amazonaws.com
   pathType: Prefix
   path: /
 regularData: {}
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  cpu:
+    targetPercentage: 70
+  memory:
+    enabled: false
+    targetPercentage: 75
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
