@@ -37,7 +37,6 @@ pipeline {
                 DB_PASS  = credentials('db_pass')
                 DB_NAME  = credentials('db_name')
                 DB_ROOT  = credentials('db_root_pass')
-            
             }
             steps {
                 script {
