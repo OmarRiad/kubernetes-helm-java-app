@@ -47,7 +47,7 @@ pipeline {
                     """
                    echo 'Deploying with Helm...'
                     sh """
-                    helm upgrade --install my-app ./HelmChart -f ./HelmChart/rendered-values.yaml
+                    /var/jenkins_home/bin/helm upgrade --install my-app ./HelmChart -f ./HelmChart/rendered-values.yaml
                     """
                 }
             }
