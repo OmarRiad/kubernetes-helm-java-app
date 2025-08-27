@@ -4,14 +4,14 @@ replicas: 3
 profile: fargate
 imageRepository: 662930028566.dkr.ecr.us-east-1.amazonaws.com/java-maven-app
 registrySecret: aws-registry-key
-imageTag: latest
+imageTag: $IMAGE_NAME
 containerPort: 8080
 servicePort: 8080
 secretData:
-  DB_USER: my-user
-  DB_PWD: my-pass
-  MYSQL_ROOT_PASS: secret-root-pass
-  DB_NAME: my-app-db
+  DB_USER: $db_user
+  DB_PWD: $db_pass
+  MYSQL_ROOT_PASS: $db_root_pass
+  DB_NAME: $db_name
 configData:
   DB_SERVER: my-release-mysql-primary.default.svc.cluster.local
 configName: db-config
