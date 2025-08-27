@@ -20,3 +20,10 @@ ingress:
   hostName: myapp.com
   pathType: Prefix
   path: /
+
+hpa:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  cpu:
+    targetPercentage: 70
