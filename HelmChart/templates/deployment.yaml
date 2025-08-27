@@ -2,33 +2,39 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName }}
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Values.appName }}
 spec:
-  replicas: {{ .Values.replicas }}
+  {{- if not .Values.hpa.enabled }}
+  replicas: {{ .Values.replicas | default 1 }}
+  {{- else }}
+  # replicas omitted; HPA controls it
+  {{- end }}
   selector:
     matchLabels:
       app: {{ .Values.appName }}
+      profile: {{ .Values.profile }}
   template:
     metadata:
       labels:
         app: {{ .Values.appName }}
+        profile: {{ .Values.profile }}
     spec:
-      # imagePullSecrets:
-      # - name: regcred
+      imagePullSecrets:
+      - name: {{ .Values.registrySecret }}
       containers:
       - name: {{ .Values.appName }}
         image:  "{{ .Values.imageRepository }}:{{ .Values.imageTag }}"
         ports:
         - containerPort: {{ .Values.containerPort }}
-        
-        # resources:
-        #   requests:
-        #     memory: "128Mi"
-        #     cpu: "250m"
-        #   limits:
-        #     memory: "256Mi"
-        #     cpu: "500m"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
         env:
         {{- range .Values.containerEnvVars}}
         - name: {{ .name }}
