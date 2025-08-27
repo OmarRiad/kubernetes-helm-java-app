@@ -14,8 +14,6 @@ spec:
       labels:
         app: phpmyadmin
     spec:
-      # imagePullSecrets:
-      # - name: regcred
       containers:
       - name: phpmyadmin
         image:  phpmyadmin/phpmyadmin
@@ -25,10 +23,8 @@ spec:
           - name: PMA_HOST
             valueFrom:
               configMapKeyRef:
-                name: db-config        # The ConfigMap this value comes from.
+                name: db-config        
                 key: db_server
-          # - name: PMA_PORT
-          #   value: "3306"
           - name: MYSQL_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -45,5 +41,6 @@ spec:
     app: phpmyadmin
   ports:
   - protocol: TCP
-    port: 8079
+    port: 8081
+    nodePort: 30001
     targetPort: 80
