@@ -22,7 +22,7 @@ pipeline {
                     echo "building the docker image..."
                     withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
                         sh "docker build -t ${DOCKER_REPO}:${IMAGE_NAME} ."
-                        sh 'echo $PASS | docker login -u $USER --password-stdin ${DOCKER_REPO_SERVER}'
+                        sh "aws ecr get-login-password --region ${CLUSTER_REGION} | docker login --username AWS --password-stdin ${ECR_REPO_URL}"
                         sh "docker push ${DOCKER_REPO}:${IMAGE_NAME}"
                     }
                 }
