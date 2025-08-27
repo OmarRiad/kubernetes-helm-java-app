@@ -44,11 +44,11 @@ pipeline {
                 script {
                     echo 'Preparing values file...'
                     sh """
-                    envsubst < HelmChart/values-override.yaml > HelmChart/rendered-values.yaml
+                    envsubst < ./HelmChart/values-override.yaml > ./HelmChart/rendered-values.yaml
                     """
                    echo 'Deploying with Helm...'
                     sh """
-                    helm upgrade --install my-app ./HelmChart -f HelmChart/rendered-values.yaml
+                    helm upgrade --install my-app ./HelmChart -f ./HelmChart/rendered-values.yaml
                     """
                 }
             }
