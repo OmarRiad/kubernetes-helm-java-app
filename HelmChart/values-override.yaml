@@ -8,10 +8,10 @@ imageTag: $IMAGE_NAME
 containerPort: 8080
 servicePort: 8080
 secretData:
-  DB_USER: $db_user
-  DB_PWD: $db_pass
-  MYSQL_ROOT_PASS: $db_root_pass
-  DB_NAME: $db_name
+  DB_USER: $DB_USER
+  DB_PWD: $DB_PASS
+  MYSQL_ROOT_PASS: $DB_ROOT
+  DB_NAME: $DB_NAME
 configData:
   DB_SERVER: my-release-mysql-primary.default.svc.cluster.local
 configName: db-config
