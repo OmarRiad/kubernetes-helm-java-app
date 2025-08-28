@@ -40,11 +40,6 @@ pipeline {
             }
             steps {
                 script {
-                    sh """
-                    echo "DB_USER=${DB_USER}"
-                    echo "DB_NAME=${DB_NAME}"
-                    echo "DB_PASS=${DB_PASS}"
-                    """
                     echo 'Preparing values file...'
                     sh """
                     envsubst < ./HelmChart/values-override.yaml > ./HelmChart/rendered-values.yaml
