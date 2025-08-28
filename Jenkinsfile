@@ -37,12 +37,19 @@ pipeline {
                 DB_PASS = credentials('db_pass')
                 DB_NAME = credentials('db_name')
                 DB_ROOT = credentials('db_root_pass')
+                sh """
                 echo "DB_USER=${DB_USER}"
                 echo "DB_NAME=${DB_NAME}"
                 echo "DB_PASS=${DB_PASS}"
+                """
             }
             steps {
                 script {
+                    sh """
+                    echo "DB_USER=${DB_USER}"
+                    echo "DB_NAME=${DB_NAME}"
+                    echo "DB_PASS=${DB_PASS}"
+                    """
                     echo 'Preparing values file...'
                     sh """
                     envsubst < ./HelmChart/values-override.yaml > ./HelmChart/rendered-values.yaml
