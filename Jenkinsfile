@@ -33,10 +33,13 @@ pipeline {
             environment{
                 APP_NAME = 'java-app'
                 APP_NAMESPACE = 'my-app'
-                DB_USER  = credentials('db_user')
-                DB_PASS  = credentials('db_pass')
-                DB_NAME  = credentials('db_name')
-                DB_ROOT  = credentials('db_root_pass')
+                DB_USER = credentials('db_user')
+                DB_PASS = credentials('db_pass')
+                DB_NAME = credentials('db_name')
+                DB_ROOT = credentials('db_root_pass')
+                echo "DB_USER=${DB_USER}"
+                echo "DB_NAME=${DB_NAME}"
+                echo "DB_PASS=${DB_PASS}"
             }
             steps {
                 script {
