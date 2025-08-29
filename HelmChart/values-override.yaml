@@ -13,7 +13,7 @@ secretData:
   MYSQL_ROOT_PASS: $DB_ROOT
   DB_NAME: $DB_NAME
 configData:
-  DB_SERVER: proxysql-cluster.default.svc.cluster.local
+  DB_SERVER: proxysql-cluster.default.svc.cluster.local:6033
 configName: db-config
 secretName: db-secret
 ingress:
