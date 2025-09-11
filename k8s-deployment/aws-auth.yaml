@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::662930028566:role/eksctl-demo-cluster-nodegroup-demo-NodeInstanceRole-ET7p2u0YvDRL
+      username: system:node:{{EC2PrivateDNSName}}
+    - rolearn: arn:aws:iam::662930028566:role/jenkins-role
+      username: jenkins
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      - system:node-proxier
+      rolearn: arn:aws:iam::662930028566:role/faragate-pod-role
+      username: system:node:{{SessionName}}
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2025-08-25T12:04:54Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "291352"
+  uid: ba753313-ebc6-46f5-bbcd-b11d6a202bdf

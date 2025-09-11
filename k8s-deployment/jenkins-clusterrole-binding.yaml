@@ -1,0 +1,18 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"jenkins-admin"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"jenkins-role"},"subjects":[{"apiGroup":"rbac.authorization.k8s.io","kind":"User","name":"jenkins"}]}
+  creationTimestamp: "2025-08-25T16:45:58Z"
+  name: jenkins-admin
+  resourceVersion: "51441"
+  uid: 0ac64e54-28ff-4fd3-a950-032e63a6ccdf
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: jenkins-role
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jenkins
