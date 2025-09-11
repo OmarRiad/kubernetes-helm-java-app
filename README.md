@@ -150,9 +150,11 @@ kubectl -n dev get deploy,svc,hpa,ingress
 
 ## Security notes
 
-- Keep DB credentials in Jenkins Credentials (secret text). The chart uses `stringData`.
-- Scope Jenkins RBAC to target namespaces.
-- Prefer upgrading ProxySQL for modern MySQL auth.
+- Keep DB credentials in Jenkins credentials (secret text). Helm chart uses stringData; Kubernetes encodes them.
+- Limit Jenkins RBAC to target namespaces only.
+- Rotate ECR and DB credentials regularly.
+- Prefer upgrading ProxySQL for modern MySQL auth instead of weakening DB auth.
+
 
 ## Screenshots 
 
@@ -172,9 +174,3 @@ kubectl -n dev get deploy,svc,hpa,ingress
 - ProxySQL admin: kubectl -n default port-forward svc/<proxysql-svc> 6032:6032
 - DB secrets (raw manifest example): k8s-deployment/db-secrets.yaml
 
-## Security notes
-
-- Keep DB credentials in Jenkins credentials (secret text). Helm chart uses stringData; Kubernetes encodes them.
-- Limit Jenkins RBAC to target namespaces only.
-- Rotate ECR and DB credentials regularly.
-- Prefer upgrading ProxySQL for modern MySQL auth instead of weakening DB auth.
